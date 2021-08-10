@@ -1,0 +1,32 @@
+--- PKGBUILD	2021-08-09 04:28:29.000000000 +0800
++++ PKGBUILD	2021-08-10 16:15:13.372614642 +0800
+@@ -2,10 +2,11 @@
+ # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
+ # Maintainer: Oleg Rakhmanov <oleg@archlinuxarm.org>
+ # Maintainer: graysky <graysky@archlinux.us>
++# Maintainrr: 135e2 <135e2@135e2.tk>
+ 
+ buildarch=12
+ 
+-pkgbase=linux-raspberrypi4
++pkgbase=linux-raspberrypi4-bbrp
+ _commit=4e5d621498df7fce8b2cf90ac6bb7b2efbdbec5e
+ _srcname=linux-${_commit}
+ _kernelname=${pkgbase#linux}
+@@ -23,6 +24,7 @@
+         'cmdline.txt'
+         'linux.preset'
+         '0001-Make-proc-cpuinfo-consistent-on-arm64-and-arm.patch'
++        'convert_official_linux-5.10.x_src_to_bbrplus.patch'
+         '60-linux.hook'
+         '90-linux.hook')
+ md5sums=('0f1709cde4347c31f6dbaca21a213892'
+@@ -53,6 +55,8 @@
+ 
+   # consistent behavior of lscpu on arm/arm64
+   patch -Np1 -i ../0001-Make-proc-cpuinfo-consistent-on-arm64-and-arm.patch
++  # patch bbrplus
++  patch -Np1 -i ../convert_official_linux-5.10.x_src_to_bbrplus.patch
+ }
+ 
+ build() {
